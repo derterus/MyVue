@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My first Vue app</title>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/vue@2"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1 :title="message + ' ' + 'Никита'">{{message}}</h1>
+      ////////////
+      </br>
+      <h1 v-if="status">Сложение</h1>
+      <h1 v-else>Вычитание</h1>
+      <label>Первое число</label>
+      <input v-model="one"></input>
+      </br>
+      <label>Второе число</label>
+      <input v-model="two"></input>
+      </br>
+      <h1>{{result}}</h1>
+      <button @click="button">Поменять</button></br>
+      <button @click="res">Посчитать</button></br>
+      /////////////
+      <h1 v-show="status==1">Видно</h1>
+      ///////////////////
+      <il >
+        <li v-for="(name,id) in list">
+         {{id+1}} {{name}}
+        </li>
+      </il>
+      <ol >
+        <li v-for="name in lost">
+         {{name.id}} {{name.name}}
+        </li>
+      </ol>
+
+      <table border="1">
+        <thead>
+        <th>id</th>
+        <th>имя</th>
+        <th>возраст</th>
+        </thead>
+        <tbody>
+          <tr v-for="name in lost" >
+            <td>{{name.id}}</td>
+            <td>{{name.name}}</td>
+            <td>{{name.age}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello Vue! " + new Date().toLocaleString(),
+          status: true,
+          one: "",
+          two: "",
+          result: "",
+          list: ["фыв", "паа", "биБА", "Боба", "Гфаы"],
+          lost:[
+                { id:1,name:'фыв',age:10},
+                { id:2,name:'gf',age:5 },
+              ]
+        },
+        methods: {
+          button: function () {
+            this.status=!this.status
+          },
+          res: function()  {
+            if(this.status==true){
+              this.result=parseInt(this.one)+parseInt(this.two)
+            }
+            else{
+              this.result=parseInt(this.one)-parseInt(this.two)
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
